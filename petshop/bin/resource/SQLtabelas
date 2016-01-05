@@ -1,0 +1,31 @@
+
+CREATE TABLE Cliente (
+id_cliente serial not null PRIMARY KEY,
+nome varchar(70),
+rua varchar(70),
+bairro varchar(30),
+cep varchar(10),
+numero integer,
+telefone varchar(10)
+);
+
+CREATE TABLE Animal (
+id_animal serial not null PRIMARY KEY,
+nome varchar(70),
+raca varchar(20),
+especie varchar(20),
+idade integer,
+id_cliente integer,
+FOREIGN KEY(id_cliente) REFERENCES Cliente (id_cliente)
+);
+
+
+CREATE TABLE Serviço (
+id_servico serial not null PRIMARY KEY,
+custo float,
+nome varchar(30),
+data_realizacao date,
+id_animal int,
+FOREIGN KEY(id_animal) REFERENCES Animal (id_animal)
+);
+
