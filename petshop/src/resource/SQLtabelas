@@ -1,0 +1,113 @@
+CREATE TABLE cliente (
+id_cliente serial NOT NULL PRIMARY KEY,
+nome VARCHAR(70),
+rua VARCHAR(70),
+bairro VARCHAR(30),
+cep VARCHAR(50),
+numero INTEGER,
+telefone VARCHAR(50)
+);
+ 
+CREATE TABLE animal (
+id_animal serial NOT NULL PRIMARY KEY,
+nome VARCHAR(70),
+raca VARCHAR(20),
+especie VARCHAR(20),
+idade INTEGER,
+id_cliente INTEGER,
+sexo VARCHAR(5),
+FOREIGN KEY(id_cliente) REFERENCES Cliente (id_cliente)
+);
+
+CREATE TABLE servico (
+id_servico serial NOT NULL PRIMARY KEY,
+valor FLOAT,
+nome VARCHAR(30)
+);
+
+ 
+CREATE TABLE participa(
+id_participa  serial NOT NULL PRIMARY KEY,
+data VARCHAR(70),
+horario VARCHAR(70),
+precoservico FLOAT,
+custo FLOAT,
+id_animal INTEGER,
+nomeanimal VARCHAR(50),
+nomeDono VARCHAR(50),
+id_tiposervico INTEGER,
+nomeservico VARCHAR(50),
+finalizado BOOLEAN
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+POSTGRESS:
+ 
+CREATE TABLE animal
+(
+  id_animal serial NOT NULL,
+  nome character varying(70),
+  raca character varying(20),
+  especie character varying(20),
+  idade integer,
+  id_cliente integer,
+  CONSTRAINT animal_pkey PRIMARY KEY (id_animal),
+  CONSTRAINT animal_id_cliente_fkey FOREIGN KEY (id_cliente)
+      REFERENCES cliente (id_cliente) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE animal
+  OWNER TO postgres;
+ 
+REATE TABLE cliente
+(
+  id_cliente serial NOT NULL,
+  nome character varying(70),
+  rua character varying(70),
+  bairro character varying(30),
+  cep character varying(10),
+  numero integer,
+  telefone character varying(10),
+  CONSTRAINT cliente_pkey PRIMARY KEY (id_cliente)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE cliente
+  OWNER TO postgres;
+ 
+CREATE TABLE "serviço"
+(
+  id_servico serial NOT NULL,
+  custo double precision,
+  nome character varying(30),
+  data_realizacao date,
+  id_animal integer,
+  CONSTRAINT "serviço_pkey" PRIMARY KEY (id_servico),
+  CONSTRAINT "serviço_id_animal_fkey" FOREIGN KEY (id_animal)
+      REFERENCES animal (id_animal) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "serviço"
+  OWNER TO postgres;
+*/
